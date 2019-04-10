@@ -2,7 +2,7 @@
 
 main();
 function main(){
-    $permissionKeys=[0=>'NONCONFIDENTIAL',1=> 'CONFIDENTIAL', 2=>'SECRET', 'TOPSECRET'];
+    $permissionKeys=[0=>'NONCONFIDENTIAL',1=> 'CONFIDENTIAL', 2=>'SECRET', 3=>'TOPSECRET'];
     $files=[
             'file1'=>'NONCONFIDENTIAL',
             'file2'=>'CONFIDENTIAL',
@@ -30,7 +30,7 @@ if(!$_GET){
         return;
     }
 
-    if(!isset($_GET['file'])){
+    if($_GET['user'] && array_key_exists($_GET['user'],$_SESSION['users']) && !isset($_GET['file'])){
         foreach($files as $name=>$file){
             echo ('<a href=/?user='.$_GET['user'].'&file='.$name.'&action=write>'.$name.' write</a> <a href=/?user='.$_GET['user'].'&file='.$name.'&action=read>'.$name.' read</a> <br>');
         }
